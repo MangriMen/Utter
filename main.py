@@ -270,22 +270,22 @@ def telegram_bot_start():
             except:
                 return
 
-        file_id = message.photo[-1].file_id
-        file_url = telegram_bot.get_file_url(file_id)
+            file_id = message.photo[-1].file_id
+            file_url = telegram_bot.get_file_url(file_id)
 
-        session = requests.Session()
-        upload = vk_api.VkUpload(vk_session)
+            session = requests.Session()
+            upload = vk_api.VkUpload(vk_session)
 
-        photo = session.get(file_url, stream=True)
-        vk_photo = upload.photo_messages(photos=photo.raw)[0]
+            photo = session.get(file_url, stream=True)
+            vk_photo = upload.photo_messages(photos=photo.raw)[0]
 
-        attachment = f"photo{vk_photo['owner_id']}_{vk_photo['id']}"
+            attachment = f"photo{vk_photo['owner_id']}_{vk_photo['id']}"
 
-        vk_bot.messages.send(
-            chat_id=vk_chat_id,
-            attachment=attachment,
-            random_id=get_random_id()
-        )
+            vk_bot.messages.send(
+                chat_id=vk_chat_id,
+                attachment=attachment,
+                random_id=get_random_id()
+            )
 
     @ telegram_bot.message_handler(content_types=["text"])
     def handler_text(message):
