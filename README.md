@@ -16,3 +16,12 @@ pip install -r requirements.txt
 ```
 python ./main.py
 ```
+
+## Настройка
+Создать файл .env и заполнить его в соответствие с примером (.env.example)
+В файл config.ini в раздел [channels] добавить связь между группами. Например:
+```
+[channels]
+vk_1=tg_-7218425
+tg_-7218425=vk_1
+```
